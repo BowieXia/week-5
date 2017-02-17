@@ -21,3 +21,15 @@ body {
     overflow-y: auto;
     padding: 20px;
 }
+.Big-button {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  width: 300px;
+  height: auto;
+  top:400px;
+  bottom:10px;
+  padding: inherit;
+  border: 30px;
+  outline-color: #2980b9;
+}

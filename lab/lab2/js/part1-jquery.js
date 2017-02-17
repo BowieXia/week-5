@@ -170,4 +170,129 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+  //One click button to lock and unlock the forms
+  $("#ValidateButton").click(function(){
+    // $("#text-input1").prop('disabled', false);
+    // $("#text-input2").prop('disabled', false);
+    // $("#text-input3").prop('disabled', false);
+    if($("#text-input1").prop('disabled')===true)
+    {
+      $("#text-input1").prop('disabled',false);
+    }
+    else {
+      $("#text-input1").prop('disabled',true);
+    }
+    if($("#text-input2").prop('disabled')===true)
+    {
+      $("#text-input2").prop('disabled',false);
+    }
+    else {
+      $("#text-input2").prop('disabled',true);
+    }
+    if($("#text-input3").prop('disabled')===true)
+    {
+      $("#text-input3").prop('disabled',false);
+    }
+    else {
+      $("#text-input3").prop('disabled',true);
+    }
+    if($("#tnumeric-input").prop('disabled')===true)
+    {
+      $("#numeric-input").prop('disabled',false);
+    }
+    else {
+      $("#numeric-input").prop('disabled',true);
+    }
+    if($("#cbox-input1").prop('disabled')===true)
+    {
+      $("#cbox-input1").prop('disabled',false);
+    }
+    else {
+      $("#cbox-input1").prop('disabled',true);
+    }
+    if($("#cbox-input2").prop('disabled')===true)
+    {
+      $("#cbox-input2").prop('disabled',false);
+    }
+    else {
+      $("#cbox-input2").prop('disabled',true);
+    }
+  });
+  //Set up all labels
+  $("#main-heading").text("CheeseCakeGiftShop");
+  $("#text-label1").text("CheeseCake Name");
+  $("#text-label2").text("Favor");
+  $("#text-label3").text("Delivery Address");
+  $("#number-label").text("Calorie");
+  $("#checkbox-label1").text("Extra Sugar");
+  $("#checkbox-label2").text("Extra Piece");
+  $("#color-label").text("Color of Package");
+  //Set up all input values
+  $("#text-input1").val("Red Velvet");
+  $("#text-input2").val("Cherry");
+  $("#text-input3").val("3737 Chestnut Street");
+  $("#numeric-input").val("780");
+  $("#cbox-input1").prop("checked",true);
+  $("#cbox-input2").prop("checked",false);
+  $("#color-input").val('#ffff00');
+  //Reading from input, write into one javascript object
+  var cCake = {
+    Name: $("#text-input1").val(),
+    Favor:  $("#text-input2").val(),
+    Calorie: $("#numeric-input").val(),
+    Extra_Sugar: $("#cbox-input1").prop("checked"),
+    Extra_Piece: $("#cbox-input2").prop("checked"),
+    Package_Color: $("#color-input").val(),
+    Address: $("#text-label3").val()
+  } ;
+  //console.log(cCake);
+  //Enable all the forms
+  $("#text-input1").prop('disabled', false);
+  $("#text-input2").prop('disabled', false);
+  $("#text-input3").prop('disabled', false);
+  $("#numeric-input").prop('disabled', false);
+  $("#cbox-input1").prop('disabled', false);
+  $("#cbox-input2").prop('disabled', false);
+  //Click this button to console log the data
+  $("#LogData").click(function(){
+    var AnothercCake = {
+      Name: $("#text-input1").val(),
+      Favor:  $("#text-input2").val(),
+      Calorie: $("#numeric-input").val(),
+      Extra_Sugar: $("#cbox-input1").prop("checked"),
+      Extra_Piece: $("#cbox-input2").prop("checked"),
+      Package_Color: $("#color-input").val(),
+      Address: $("#text-label3").val()
+    } ;
+    console.log(AnothercCake);
+    //Edit this inputs including Lat, Lng, description
+    $("#text-label1").text("CheeseCake Name and Additional Info");
+    $("#text-label2").text("Lat");
+    $("#text-label3").text("Lng");
+    $("#text-input1").val("I want one Red Velvet cheesecake and can I get one fancy package for this?");
+    $("#text-input2").val("39.955463");
+    $("#text-input3").val("-75.197689");
+    var Lat = $("#text-input2").val();
+    var Lng = $("#text-input3").val();
+    var popupContent = $("#text-input1").val();
+
+    var CMarker = L.circleMarker([Lat,Lng],{fillColor:$("#color-input").val()});
+    var ImageUrl = "js/cake.jpg";
+    var myIcon = L.divIcon({
+      className: 'leaflet-marker-icon',
+      iconSize: new L.Point([39.956368,-75.198548]),
+      html: 'cake delivery'
+    });
+    $('.leaflet-marker-icon').css('background-image', ImageUrl);
+    var CCMarker = L.circleMarker([39.956368,-75.198548],{icon: myIcon});
+    CMarker.bindPopup(popupContent);
+    CMarker.addTo(map);
+    CCMarker.addTo(map);
+    console.log(CMarker);
+  });
+  //Stretch GOALS
+  var myIcon = L.divIcon({className: 'leaflet-marker-icon'});
+
+
+
 });
